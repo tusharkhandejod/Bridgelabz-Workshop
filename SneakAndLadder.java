@@ -1,4 +1,4 @@
-import java.util.Random;
+kimport java.util.Random;
 import java.util.Scanner;
 
 class SneakLadder {
@@ -8,7 +8,6 @@ class SneakLadder {
 	static int diceoutput;
 	static int position_of_player1;
 	static String Player1;
-
 	
 	
 	void initialization() // UC1
@@ -20,6 +19,17 @@ class SneakLadder {
 		position_of_player1=STARTING_POSITION;
 		System.out.println("\nStarting Player1 Position ="+position_of_player1);
 	}
+	
+	void rollingADice()    // UC2 
+	{
+		
+		Random random = new Random();
+		diceoutput= random.nextInt(6)+1;
+	        System.out.println("\nDice output = "+diceoutput);
+	    
+			
+	 }
+	
 
 }
 
@@ -34,6 +44,8 @@ class Main1 {
 		
 		SneakLadder obj1 = new SneakLadder();
 		obj1.initialization();
+		obj1.rollingADice();
+
 	}
 
 }
