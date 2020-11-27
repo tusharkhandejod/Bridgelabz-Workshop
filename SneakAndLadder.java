@@ -1,4 +1,4 @@
-kimport java.util.Random;
+import java.util.Random;
 import java.util.Scanner;
 
 class SneakLadder {
@@ -8,6 +8,10 @@ class SneakLadder {
 	static int diceoutput;
 	static int position_of_player1;
 	static String Player1;
+	static int choice;
+	final int noPlay=1;
+	final int ladder=2;
+	final int sneak=3;
 	
 	
 	void initialization() // UC1
@@ -25,14 +29,54 @@ class SneakLadder {
 		
 		Random random = new Random();
 		diceoutput= random.nextInt(6)+1;
-	        System.out.println("\nDice output = "+diceoutput);
+	    System.out.println("\nDice output = "+diceoutput);
 	    
 			
 	 }
 	
-
+	void checkForOption()    //UC3
+	{
+		Random random = new Random();
+		choice = random.nextInt(3)+1;
+		System.out.println("\nChoice ="+choice);
+        switch (choice)
+        {
+        
+        case noPlay : 
+        	  System.out.println("\nNo play");
+        	  if(position_of_player1>=STARTING_POSITION && position_of_player1<END_POSITION)
+        	  {
+        	     position_of_player1= position_of_player1+0;
+        	  }
+        	  System.out.println("\nPlayer1 Position = "+position_of_player1);
+        	  break;
+        
+        case ladder :
+        	  System.out.println("\nLadder, we will move ahead");
+        	  if(position_of_player1>=STARTING_POSITION && position_of_player1<END_POSITION)
+        	  {
+        	     position_of_player1= position_of_player1+diceoutput;
+        	  }
+        	  System.out.println("\nPlayer1 Position = "+position_of_player1);
+        	  break;
+        
+        case sneak : 
+        	   System.out.println("\nSneak, we will move backwards");
+        	   if(position_of_player1>=STARTING_POSITION && position_of_player1<END_POSITION)
+        	   {
+        	   
+        		   position_of_player1= position_of_player1-diceoutput;
+        		   if(position_of_player1<STARTING_POSITION)
+        		   {
+        			   position_of_player1=0; 
+        		   }
+        	   }
+        	   System.out.println("\nPlayer1 Position = "+position_of_player1);
+        	   break;
+        }
+	}
+	
 }
-
 
 class Main1 {
 
@@ -45,7 +89,8 @@ class Main1 {
 		SneakLadder obj1 = new SneakLadder();
 		obj1.initialization();
 		obj1.rollingADice();
-
+                obj1.checkForOption();
 	}
 
 }
+	
