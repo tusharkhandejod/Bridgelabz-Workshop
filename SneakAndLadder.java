@@ -98,11 +98,15 @@ class SneakLadder {
 	        case ladder :
 	        	  
 	        	  position_of_player1= position_of_player1+diceoutput;
-	        	  if(position_of_player1>END_POSITION)
-	        	  {
-	        		  position_of_player1=100; 
-	        	  }
 	        	  System.out.println("Updated Player1 Position = "+position_of_player1);
+	        	  if(position_of_player1==END_POSITION)
+	        	  {
+	        		  break;  
+	        	   }
+	        	  else if(position_of_player1>END_POSITION)
+	        	  {
+	        		  position_of_player1= position_of_player1-diceoutput;
+	        	  }
 	        	  break;
 	        
 	        case sneak : 
@@ -129,3 +133,23 @@ class SneakLadder {
 
 }
 
+
+
+class Main1 {
+
+	public static void main(String[] args) 
+	{
+		System.out.println("\n---------------------------------------");
+		System.out.println("\n\nWelcome to the Sneak & Ladder program");
+		System.out.println("\n---------------------------------------");
+		
+		SneakLadder obj1 = new SneakLadder();
+		obj1.initialization();
+		obj1.rollingADice();
+		//obj1.checkForOption();
+		obj1.tillAPositionReached();
+		
+
+	}
+
+}
