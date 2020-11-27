@@ -76,21 +76,56 @@ class SneakLadder {
         }
 	}
 	
-}
-
-class Main1 {
-
-	public static void main(String[] args) 
+	void tillAPositionReached() // UC4
 	{
-		System.out.println("\n---------------------------------------");
-		System.out.println("\n\nWelcome to the Sneak & Ladder program");
-		System.out.println("\n---------------------------------------");
+		while(position_of_player1>=STARTING_POSITION && position_of_player1<END_POSITION)
+		{
+			rollingADice();
+			
+			Random random = new Random();
+			choice = random.nextInt(3)+1;
+			System.out.println("\nChoice ="+choice);
+	        
+			switch (choice)
+	        {
+	        
+	        case noPlay : 
+	        	  
+	        	  position_of_player1= position_of_player1+0;
+	        	  System.out.println("Updated Player1 Position = "+position_of_player1);
+	        	  break;
+	        
+	        case ladder :
+	        	  
+	        	  position_of_player1= position_of_player1+diceoutput;
+	        	  if(position_of_player1>END_POSITION)
+	        	  {
+	        		  position_of_player1=100; 
+	        	  }
+	        	  System.out.println("Updated Player1 Position = "+position_of_player1);
+	        	  break;
+	        
+	        case sneak : 
+	        	   
+	        	  position_of_player1= position_of_player1-diceoutput;
+	        		   if(position_of_player1<STARTING_POSITION)
+	        		   {
+	        			   position_of_player1=0; 
+	        		   }
+	        	   
+	        	   System.out.println("Updated Player1 Position = "+position_of_player1);
+	        	   break;
+	        }
+			
+		}
 		
-		SneakLadder obj1 = new SneakLadder();
-		obj1.initialization();
-		obj1.rollingADice();
-                obj1.checkForOption();
+		if(position_of_player1>=100)
+		{
+			System.out.println("\nWe reached final position so we got out of the loop.");
+		}
 	}
+	
+	
 
 }
-	
+
